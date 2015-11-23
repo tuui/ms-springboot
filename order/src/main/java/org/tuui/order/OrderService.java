@@ -9,8 +9,6 @@ import java.util.List;
 @Service
 public class OrderService {
 
-	private static final String CUSTOMER_SERVICE_URI = "http://localhost:8091/customer/{id}";
-	private static final String PRODUCT_SERVICE_URI = "http://localhost:8093/product/{id}";
 	private static List<Order> orders = new ArrayList<>();
 
 	static {
