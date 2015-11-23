@@ -1,0 +1,4 @@
+step-1
+    Spring boot microservices communicating directly using url and port
+step-2
+    Spring cloud microservices using Eureka for service registration and discovery

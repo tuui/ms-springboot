@@ -1,4 +1,4 @@
-package org.tuui;
+package org.tuui.customer;
 
 import org.springframework.stereotype.Service;
 

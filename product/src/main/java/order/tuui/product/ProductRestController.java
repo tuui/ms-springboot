@@ -1,4 +1,4 @@
-package org.tuui;
+package order.tuui.product;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

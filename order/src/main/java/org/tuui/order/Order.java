@@ -1,4 +1,4 @@
-package org.tuui;
+package org.tuui.order;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -8,10 +8,10 @@ public class Order {
 	private Long id;
 	@JsonIgnore
 	private Long customerId;
-	private Customer customer;
+	private CustomerClient.Customer customer;
 	@JsonIgnore
 	private Long productId;
-	private Product product;
+	private ProductClient.Product product;
 
 	public Order(Long id, Long customerId, Long productId) {
 		this.id = id;

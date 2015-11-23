@@ -1,9 +1,8 @@
-package org.tuui;
+package org.tuui.order;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,17 +21,20 @@ public class OrderService {
 		orders.add(new Order(5L, 3L, 3L));
 	}
 
-	@Inject
-	private RestTemplate restTemplate;
+	@Autowired
+	private CustomerClient customerClient;
+
+	@Autowired
+	private ProductClient productClient;
 
 	public Order getOrder(Long id) {
 		Order order = orders.stream().filter(o -> o.getId().equals(id)).findFirst().orElse(null);
 
 		if (order != null) {
-			Customer customer = restTemplate.getForObject(CUSTOMER_SERVICE_URI, Customer.class, order.getCustomerId());
+			CustomerClient.Customer customer = customerClient.getCustomer(order.getCustomerId());
 			order.setCustomer(customer);
 
-			Product product = restTemplate.getForObject(PRODUCT_SERVICE_URI, Product.class, order.getProductId());
+			ProductClient.Product product = productClient.getProduct(order.getProductId());
 			order.setProduct(product);
 		}
 

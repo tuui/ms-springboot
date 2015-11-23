@@ -1,4 +1,4 @@
-package org.tuui;
+package order.tuui.product;
 
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class ProductService {
 	static {
 		products.add(new Product(1L, "Knife", new BigDecimal(12), "Can cut"));
 		products.add(new Product(2L, "Gun", new BigDecimal(122), "Can shoot"));
-		products.add(new Product(2L, "Car", new BigDecimal(1200), "Can drive"));
+		products.add(new Product(3L, "Car", new BigDecimal(1200), "Can drive"));
 	}
 
 	public Product getProduct(Long id){
