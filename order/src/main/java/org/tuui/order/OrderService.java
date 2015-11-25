@@ -1,11 +1,13 @@
 package org.tuui.order;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class OrderService {
 
@@ -29,11 +31,19 @@ public class OrderService {
 		Order order = orders.stream().filter(o -> o.getId().equals(id)).findFirst().orElse(null);
 
 		if (order != null) {
-			CustomerClient.Customer customer = customerClient.getCustomer(order.getCustomerId());
-			order.setCustomer(customer);
+			try {
+				CustomerClient.Customer customer = customerClient.getCustomer(order.getCustomerId());
+				order.setCustomer(customer);
+			} catch (Exception e) {
+				log.error("Exception when loading customer:", e);
+			}
 
-			ProductClient.Product product = productClient.getProduct(order.getProductId());
-			order.setProduct(product);
+			try {
+				ProductClient.Product product = productClient.getProduct(order.getProductId());
+				order.setProduct(product);
+			} catch (Exception e) {
+				log.error("Exception when loading product:", e);
+			}
 		}
 
 		return order;
