@@ -2,6 +2,7 @@ package org.tuui.order;
 
 import com.google.common.cache.CacheBuilder;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -18,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 @EnableEurekaClient
 @EnableFeignClients
 @EnableCaching
+@EnableAutoConfiguration
 public class OrderApplication {
 
 	public static void main(String[] args) {

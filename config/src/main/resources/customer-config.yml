@@ -1,0 +1,6 @@
+#DEVELOPMENT profile
+spring:
+    profiles: dev
+app:
+  test:
+    value: config-service__customer-config

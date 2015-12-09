@@ -4,3 +4,5 @@ step-2
     Spring cloud microservices using Eureka for service registration and discovery
 step-3
     Use Guava Cache
+step-4
+    Using spring-cloud-config service for central configuration

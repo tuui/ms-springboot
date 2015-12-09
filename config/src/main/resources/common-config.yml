@@ -1,0 +1,26 @@
+#DEFAULT profile
+app:
+  test:
+    value: DEFAULT_config-service__common-config
+    value2: DEFAULT_config-service__common-config_2
+---
+#DEVELOPMENT profile
+spring:
+    profiles: dev
+app:
+  test:
+    value: DEV_config-service__common-config
+---
+#TEST profile
+spring:
+    profiles: test
+app:
+  test:
+    value: TEST_config-service__common-config
+---
+#PRODUCTION profile
+spring:
+    profiles: prod
+app:
+  test:
+    value: PROD_config-service__common-config

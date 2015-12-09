@@ -6,9 +6,21 @@ server:
 spring:
   application:
     name: customer-service
+  profiles:
+       active: dev
+  cloud:
+    config:
+      # By default it searches config named in spring.application.name property value
+      name: common-config,customer-config
+      profile: ${spring.profiles.active}
 
 # Discovery Server Access
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+# Used when config-service is not found
+app:
+  test:
+    value: customer-service__application_yml

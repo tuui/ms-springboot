@@ -6,6 +6,13 @@ server:
 spring:
   application:
     name: order-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      # By default it searches config named in spring.application.name property value
+      name: common-config
+      profile: ${spring.profiles.active}
 
 # Discovery Server Access
 eureka:

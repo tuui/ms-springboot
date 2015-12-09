@@ -25,6 +25,7 @@
 		<module>order</module>
 		<module>product</module>
 		<module>eureka</module>
+		<module>config</module>
 	</modules>
 
 	<build>
