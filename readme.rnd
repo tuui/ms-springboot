@@ -6,3 +6,5 @@ step-3
     Use Guava Cache
 step-4
     Using spring-cloud-config service for central configuration
+step-5
+    New email service, using ActiveMQ for communication

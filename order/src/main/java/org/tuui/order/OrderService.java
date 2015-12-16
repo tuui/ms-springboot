@@ -1,11 +1,15 @@
 package org.tuui.order;
 
 import lombok.extern.slf4j.Slf4j;
+import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -21,11 +25,24 @@ public class OrderService {
 		orders.add(new Order(5L, 3L, 3L));
 	}
 
+	private final String QUEUE_NAME = "email.queue";
+
+	@Autowired
+	private JmsTemplate jmsTemplate;
+
 	@Autowired
 	private CustomerClient customerClient;
 
 	@Autowired
 	private ProductClient productClient;
+
+	public void sendEmail(String email, String message){
+		Map map = new HashMap<String, Object>();
+		map.put("email", email);
+		map.put("message", message);
+
+		jmsTemplate.convertAndSend(QUEUE_NAME, map);
+	}
 
 	public Order getOrder(Long id) {
 		Order order = orders.stream().filter(o -> o.getId().equals(id)).findFirst().orElse(null);

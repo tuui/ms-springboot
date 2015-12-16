@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class OrderRestController {
 
+	private final String QUEUE_NAME = "email.queue";
+
 	@Autowired
 	private OrderService orderService;
 
@@ -33,5 +35,11 @@ public class OrderRestController {
 	public Order getOrder(@PathVariable Long orderId){
 		log.debug("getOrder orderId = {}", orderId);
 		return orderService.getOrder(orderId);
+	}
+
+	@RequestMapping(value = "/send", method = RequestMethod.GET)
+	public void sendOrderTestMessage() {
+		log.debug("sendOrderTestMessage...");
+		orderService.sendEmail("test@gmail.com", "test e-mail");
 	}
 }

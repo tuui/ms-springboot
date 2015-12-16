@@ -1,0 +1,17 @@
+# HTTP Server
+server:
+  port: ${PORT:8094}
+
+# Spring properties
+spring:
+  application:
+    name: email-service
+  #When not using embedded ActiveMQ
+  activemq:
+    broker-url: tcp://localhost:61616
+
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
