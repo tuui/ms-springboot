@@ -1,7 +1,6 @@
 package org.tuui.order;
 
 import lombok.extern.slf4j.Slf4j;
-import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,7 @@ public class OrderService {
 	@Autowired
 	private ProductClient productClient;
 
-	public void sendEmail(String email, String message){
+	public void sendEmail(String email, String message) {
 		Map map = new HashMap<String, Object>();
 		map.put("email", email);
 		map.put("message", message);
