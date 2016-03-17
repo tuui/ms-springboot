@@ -1,25 +1,19 @@
 # HTTP Server
 server:
-  port: ${PORT:8092}
-
-# Spring properties
-spring:
-  application:
-    name: order-service
-  profiles:
-    active: dev
-  cloud:
-    config:
-      # By default it searches config named in spring.application.name property value
-      name: common-config
-      profile: ${spring.profiles.active}
-  #When not using embedded ActiveMQ
-  activemq:
-    broker-url: tcp://localhost:61616
-
+  port: 8092
 
 # Discovery Server Access
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+---
+#Dev Docker profile
+spring:
+  profiles: dev_docker
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka/

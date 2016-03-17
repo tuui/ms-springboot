@@ -1,0 +1,21 @@
+# Spring properties
+spring:
+  application:
+    name: customer-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      # By default it searches config named in spring.application.name property value
+      name: common-config,customer-config
+      uri: http://localhost:8888
+      profile: ${spring.profiles.active}
+
+---
+#Dev Docker profile
+spring:
+  profiles: dev_docker
+  # Config server
+  cloud:
+    config:
+      uri: http://config:8888

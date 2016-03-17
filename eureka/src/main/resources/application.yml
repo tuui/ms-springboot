@@ -1,6 +1,6 @@
 # HTTP Server
 server:
-  port: ${PORT:8761}
+  port: 8761
 
 # Configure this Discovery Server
 eureka:
@@ -9,10 +9,12 @@ eureka:
     fetchRegistry: false
     server:
       waitTimeInMsWhenSyncEmpty: 0
+    serviceUrl:
+      defaultZone: http://eureka:${server.port}/eureka/
 
   # https://github.com/spring-cloud/spring-cloud-netflix/issues/413
   instance:
-    hostname: localhost
+    hostname: eureka
 
   # prevent warning: RENEWALS ARE LESSER THAN THE THRESHOLD.THE SELF PRESERVATION MODE IS TURNED OFF.
   # THIS MAY NOT PROTECT INSTANCE EXPIRY IN CASE OF NETWORK/OTHER PROBLEMS.

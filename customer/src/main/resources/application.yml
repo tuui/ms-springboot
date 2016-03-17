@@ -1,18 +1,6 @@
 # HTTP Server
 server:
-  port: ${PORT:8091}
-
-# Spring properties
-spring:
-  application:
-    name: customer-service
-  profiles:
-       active: dev
-  cloud:
-    config:
-      # By default it searches config named in spring.application.name property value
-      name: common-config,customer-config
-      profile: ${spring.profiles.active}
+  port: 8091
 
 # Discovery Server Access
 eureka:
@@ -24,3 +12,13 @@ eureka:
 app:
   test:
     value: customer-service__application_yml
+
+---
+#Dev Docker profile
+spring:
+  profiles: dev_docker
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka/

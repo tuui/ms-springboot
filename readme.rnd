@@ -8,3 +8,20 @@ step-4
     Using spring-cloud-config service for central configuration
 step-5
     New email service, using ActiveMQ for communication
+step-6
+    Use Docker
+
+
+--- Docker ---
+* Build docker images from Dockerfile:
+    mvn clean install -Pdocker
+    or
+    docker build -t ms-eureka .
+* Start docker containers:
+    docker run -d -p 8761:8761 --name eureka ms-eureka
+    docker run -d -p 8888:8888 --name config --link eureka:eureka ms-config
+    docker run -d -p 8091:8091 --name customer --link eureka:eureka --link config:config ms-customer
+    docker run -d -p 8093:8093 --name product --link eureka:eureka --link config:config ms-product
+    docker run -d -p 8161:8161 -p 61616:61616 -p 61613:61613 --name activemq webcenter/activemq:latest
+    docker run -d -p 8092:8092 --name order --link eureka:eureka --link config:config --link customer:customer --link product:product --link activemq:activemq ms-order
+    docker run -d -p 8094:8094 --name email --link eureka:eureka --link config:config --link activemq:activemq ms-email

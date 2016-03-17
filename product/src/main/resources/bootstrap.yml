@@ -1,0 +1,20 @@
+# Spring properties
+spring:
+  application:
+    name: product-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      name: common-config
+      uri: http://localhost:8888
+      profile: ${spring.profiles.active}
+
+---
+#Dev Docker profile
+spring:
+  profiles: dev_docker
+  # Config server
+  cloud:
+    config:
+      uri: http://config:8888
