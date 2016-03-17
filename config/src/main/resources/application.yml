@@ -6,5 +6,14 @@ server:
 eureka:
   client:
     serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+---
+#Dev Docker profile
+spring:
+  profiles: dev_docker
+# Discovery Server Access
+eureka:
+  client:
+    serviceUrl:
       defaultZone: http://eureka:8761/eureka/
-      #defaultZone: http://localhost:8761/eureka/ //TODO cannot use in profile, since we need native profile for config

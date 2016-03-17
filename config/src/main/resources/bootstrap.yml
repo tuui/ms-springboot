@@ -4,4 +4,4 @@ spring:
     name: config-service
   # otherwise You need to configure a uri for the git repository
   profiles:
-      active: native
+      active: native,dev
