@@ -7,6 +7,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("order")
 @RefreshScope
 public class OrderRestController {
-
-	private final String QUEUE_NAME = "email.queue";
 
 	@Autowired
 	private OrderService orderService;
@@ -38,8 +37,8 @@ public class OrderRestController {
 	}
 
 	@RequestMapping(value = "/send", method = RequestMethod.GET)
-	public void sendOrderTestMessage() {
-		log.debug("sendOrderTestMessage...");
-		orderService.sendEmail("test@gmail.com", "test e-mail");
+	public void sendOrderTestMessage(@RequestParam(value = "msg", required = false, defaultValue = "test e-mail") String msg) {
+		log.debug("sendOrderTestMessage..." + msg);
+		orderService.sendEmail("test@gmail.com", msg);
 	}
 }
