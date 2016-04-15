@@ -1,6 +1,8 @@
 package org.tuui.order;
 
-import com.google.common.cache.CacheBuilder;
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,16 +12,17 @@ import org.springframework.cache.guava.GuavaCache;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
+import com.google.common.cache.CacheBuilder;
 
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
 @EnableCaching
 @EnableAutoConfiguration
+@EnableHystrix
 public class OrderApplication {
 
 	public static void main(String[] args) {

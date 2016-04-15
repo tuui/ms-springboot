@@ -1,5 +1,6 @@
 package org.tuui.order;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
@@ -35,12 +36,19 @@ public class OrderService {
 	@Autowired
 	private ProductClient productClient;
 
-	public void sendEmail(String email, String message) {
+	@HystrixCommand(fallbackMethod = "sendEmailFallback")
+	public String sendEmail(String email, String message) {
 		Map map = new HashMap<String, Object>();
 		map.put("email", email);
 		map.put("message", message);
 
 		jmsTemplate.convertAndSend(QUEUE_NAME, map);
+		
+		return "sent e-mail using ActiveMQ";
+	}
+	
+	private String sendEmailFallback(String email, String message){
+		return "sent e-mail using alternative server";
 	}
 
 	public Order getOrder(Long id) {

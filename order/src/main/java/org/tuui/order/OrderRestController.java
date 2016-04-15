@@ -37,8 +37,8 @@ public class OrderRestController {
 	}
 
 	@RequestMapping(value = "/send", method = RequestMethod.GET)
-	public void sendOrderTestMessage(@RequestParam(value = "msg", required = false, defaultValue = "test e-mail") String msg) {
+	public String sendOrderTestMessage(@RequestParam(value = "msg", required = false, defaultValue = "test e-mail") String msg) {
 		log.debug("sendOrderTestMessage..." + msg);
-		orderService.sendEmail("test@gmail.com", msg);
+		return orderService.sendEmail("test@gmail.com", msg);
 	}
 }
